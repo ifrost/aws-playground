@@ -16,6 +16,8 @@ jobs:
         run: npm install
       - name: Create a tag and build
         run: |
+          git config --local user.email "pm.jamroz@gmail.com"
+          git config --local user.name "ifrost"
           npm version patch
           node build.js
       - name: Push changes to master
