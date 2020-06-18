@@ -1,5 +1,13 @@
-var version = require("./package").version;
+var packageVersion = require("./package").version;
 var fs = require("fs");
+var child_process = require("child_process");
+
+branch = child_process.execFileSync("git", ["rev-parse", "--abbrev-ref", "HEAD"], { encoding: "utf-8" }).trim();
+
+let version = packageVersion;
+if (branch !== "master") {
+    version += "-" + branch.replace(/\//g, "-");
+}
 
 function replaceInFile(fileName, searchValue, replaceValue) {
     fs.writeFileSync(
@@ -13,5 +21,5 @@ fs.mkdirSync('dist/' + version, { recursive: true });
 replaceInFile("index.js", "$$VERSION", version);
 replaceInFile("index.html", "<!-- VERSION -->", version);
 
-let rbaVersion = version.split(".").join(", ");
+let rbaVersion = packageVersion.split(".").join(", ");
 replaceInFile("index.css",  "color: rgb(0, 0, 0); /** VERSION **/", "color: rgb(" + rbaVersion + ");");
