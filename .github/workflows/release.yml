@@ -11,4 +11,6 @@ jobs:
 
     steps:
       - name: Release new version
-        run: echo ${{ github.event }}
+        run: |
+          echo ${{ github.event.project_card.id }}
+          echo ${{ github.event.project_card.note }}
