@@ -1,9 +1,9 @@
-name: Build and Deploy
+name: Work in Progress
 
 on:
   push:
     branches:
-      - master
+      - !master
 
 jobs:
   build:
@@ -16,16 +16,8 @@ jobs:
           fetch-depth: 0
       - name: Install dependencies
         run: npm install
-      - name: Create a tag and build
-        run: |
-          git config --local user.email "pm.jamroz@gmail.com"
-          git config --local user.name "ifrost"
-          npm version patch
-          node build.js
-      - name: Push changes to master
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build
+        run: node build.js
       - name: Deploy to AWS
         uses: ItsKarma/aws-cli@v1.70.0
         with:
