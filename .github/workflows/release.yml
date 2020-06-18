@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v1
       - name: Release new version
         if: ${{ github.event.project_card.id == 40352052}}
         run: |
