@@ -3,15 +3,15 @@ var fs = require("fs");
 
 function replaceInFile(fileName, searchValue, replaceValue) {
     fs.writeFileSync(
-        "./dist/" + fileName,
+        "./dist/" + version + "/" + fileName,
         fs.readFileSync("./" + fileName, { encoding: "utf-8"}).replace(searchValue, replaceValue)
     );
 }
 
-fs.mkdirSync('dist', { recursive: true });
+fs.mkdirSync('dist/' + version, { recursive: true });
 
 replaceInFile("index.js", "$$VERSION", version);
 replaceInFile("index.html", "<!-- VERSION -->", version);
 
 let rbaVersion = version.split(".").join(", ");
-replaceInFile("index.css",  "color: rgb(0, 0, 0); /** VERSION **/", "color: rgb(" + rbaVersion + ");")
+replaceInFile("index.css",  "color: rgb(0, 0, 0); /** VERSION **/", "color: rgb(" + rbaVersion + ");");
