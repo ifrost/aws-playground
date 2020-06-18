@@ -11,6 +11,6 @@ jobs:
 
     steps:
       - name: Release new version
+        if: ${{ github.event.project_card.id == 40352052}}
         run: |
-          echo ${{ github.event.project_card.id }}
-          echo ${{ github.event.project_card.note }}
+          node release.js ${{ github.event.project_card.note }}
