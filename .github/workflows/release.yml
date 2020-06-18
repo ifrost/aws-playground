@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-      - uses: ItsKarma/aws-cli@v1.70.0
+      - uses: chrislennon/action-aws-cli@v1.1
       - name: Release new version
         if: ${{ github.event.project_card.id == 40352052}}
         run: |
