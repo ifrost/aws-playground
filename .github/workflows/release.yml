@@ -1,0 +1,11 @@
+name: Release
+
+on:
+  project_card:
+    types: edited
+
+jobs:
+  release:
+    steps:
+      - name: Release new version
+        run: echo ${{ github.event }}
