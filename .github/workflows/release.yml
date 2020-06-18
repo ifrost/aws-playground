@@ -6,6 +6,9 @@ on:
 
 jobs:
   release:
+
+    runs-on: ubuntu-latest
+
     steps:
       - name: Release new version
         run: echo ${{ github.event }}
